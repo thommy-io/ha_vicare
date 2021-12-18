@@ -60,10 +60,18 @@ SENSOR_DHW_GAS_CONSUMPTION_TODAY = "hotwater_gas_consumption_today"
 SENSOR_DHW_GAS_CONSUMPTION_THIS_WEEK = "hotwater_gas_consumption_heating_this_week"
 SENSOR_DHW_GAS_CONSUMPTION_THIS_MONTH = "hotwater_gas_consumption_heating_this_month"
 SENSOR_DHW_GAS_CONSUMPTION_THIS_YEAR = "hotwater_gas_consumption_heating_this_year"
+SENSOR_DHW_GAS_CONSUMPTION_DAILY = "hotwater_gas_consumption_daily"
+SENSOR_DHW_GAS_CONSUMPTION_WEEKLY = "hotwater_gas_consumption_heating_weekly"
+SENSOR_DHW_GAS_CONSUMPTION_MONTHLY = "hotwater_gas_consumption_heating_monthly"
+SENSOR_DHW_GAS_CONSUMPTION_YEARLY = "hotwater_gas_consumption_heating_yearly"
 SENSOR_GAS_CONSUMPTION_TODAY = "gas_consumption_heating_today"
 SENSOR_GAS_CONSUMPTION_THIS_WEEK = "gas_consumption_heating_this_week"
 SENSOR_GAS_CONSUMPTION_THIS_MONTH = "gas_consumption_heating_this_month"
 SENSOR_GAS_CONSUMPTION_THIS_YEAR = "gas_consumption_heating_this_year"
+SENSOR_GAS_CONSUMPTION_DAILY = "gas_consumption_heating_daily"
+SENSOR_GAS_CONSUMPTION_WEEKLY = "gas_consumption_heating_weekly"
+SENSOR_GAS_CONSUMPTION_MONTHLY = "gas_consumption_heating_monthly"
+SENSOR_GAS_CONSUMPTION_YEARLY = "gas_consumption_heating_yearly"
 # gas sensors - new Viessmann api methods (PyViCare 2.15.0)
 SENSOR_GAS_SUMMARY_CONSUMPTION_CURRENT_DAY = "gas_summary_consumption_heating_currentday"
 SENSOR_GAS_SUMMARY_CONSUMPTION_CURRENT_MONTH = "gas_summary_consumption_heating_currentmonth"
@@ -165,6 +173,42 @@ GLOBAL_SENSORS: tuple[ViCareSensorEntityDescription, ...] = (
         state_class=STATE_CLASS_TOTAL_INCREASING,
     ),
     ViCareSensorEntityDescription(
+        key=SENSOR_DHW_GAS_CONSUMPTION_DAILY,
+        name="Hot water gas consumption daily",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getGasConsumptionDomesticHotWaterDays(),
+        unit_getter=lambda api: api.getGasConsumptionDomesticHotWaterUnit(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_DHW_GAS_CONSUMPTION_WEEKLY,
+        name="Hot water gas consumption weekly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getGasConsumptionDomesticHotWaterWeeks(),
+        unit_getter=lambda api: api.getGasConsumptionDomesticHotWaterUnit(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_DHW_GAS_CONSUMPTION_MONTHLY,
+        name="Hot water gas consumption monthly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getGasConsumptionDomesticHotWaterMonths(),
+        unit_getter=lambda api: api.getGasConsumptionDomesticHotWaterUnit(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_DHW_GAS_CONSUMPTION_YEARLY,
+        name="Hot water gas consumption yearly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getGasConsumptionDomesticHotWaterYears(),
+        unit_getter=lambda api: api.getGasConsumptionDomesticHotWaterUnit(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
         key=SENSOR_GAS_CONSUMPTION_TODAY,
         name="Heating gas consumption today",
         native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
@@ -196,6 +240,42 @@ GLOBAL_SENSORS: tuple[ViCareSensorEntityDescription, ...] = (
         name="Heating gas consumption this year",
         native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
         value_getter=lambda api: api.getGasConsumptionHeatingThisYear(),
+        unit_getter=lambda api: api.getGasConsumptionHeatingUnit(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_GAS_CONSUMPTION_DAILY,
+        name="Heating gas consumption daily",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getGasConsumptionHeatingDays(),
+        unit_getter=lambda api: api.getGasConsumptionHeatingUnit(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_GAS_CONSUMPTION_WEEKLY,
+        name="Heating gas consumption weekly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getGasConsumptionHeatingWeeks(),
+        unit_getter=lambda api: api.getGasConsumptionHeatingUnit(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_GAS_CONSUMPTION_MONTHLY,
+        name="Heating gas consumption monthly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getGasConsumptionHeatingMonths(),
+        unit_getter=lambda api: api.getGasConsumptionHeatingUnit(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_GAS_CONSUMPTION_YEARLY,
+        name="Heating gas consumption yearly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getGasConsumptionHeatingYears(),
         unit_getter=lambda api: api.getGasConsumptionHeatingUnit(),
         device_class=DEVICE_CLASS_ENERGY,
         state_class=STATE_CLASS_TOTAL_INCREASING,
