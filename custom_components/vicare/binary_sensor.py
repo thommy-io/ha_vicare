@@ -24,7 +24,7 @@ from .const import DOMAIN, VICARE_API, VICARE_CIRCUITS, VICARE_DEVICE_CONFIG
 
 _LOGGER = logging.getLogger(__name__)
 
-SENSOR_CIRCULATION_PUMP_ACTIVE = "circulationpump_active"
+SENSOR_CIRCULATION_PUMP_ACTIVE = "circulation_pump_active"
 SENSOR_BURNER_ACTIVE = "burner_active"
 SENSOR_COMPRESSOR_ACTIVE = "compressor_active"
 SENSOR_FROST_PROTECTION_ACTIVE = "frost_protection_active"
@@ -41,24 +41,23 @@ class ViCareBinarySensorEntityDescription(
 GLOBAL_SENSORS: tuple[ViCareBinarySensorEntityDescription, ...] = (
     ViCareBinarySensorEntityDescription(
         key=SENSOR_DHW_CIRCULATION_PUMP_ACTIVE,
-        name="DHW Circulation Pump Active",
+        name="DHW circulation pump active",
         device_class=DEVICE_CLASS_POWER,
         value_getter=lambda api: api.getDomesticHotWaterCirculationPumpActive(),
     ),
     ViCareBinarySensorEntityDescription(
         key=SENSOR_DHW_CHARGING_ACTIVE,
-        name="DHW Charging Active",
+        name="DHW charging active",
         device_class=DEVICE_CLASS_POWER,
         value_getter=lambda api: api.getDomesticHotWaterChargingActive(),
     ),
     ViCareBinarySensorEntityDescription(
         key=SENSOR_DHW_PUMP_ACTIVE,
-        name="DHW Pump Active",
+        name="DHW pump active",
         device_class=DEVICE_CLASS_POWER,
         value_getter=lambda api: api.getDomesticHotWaterPumpActive(),
     ),
 )
-
 
 CIRCUIT_SENSORS: tuple[ViCareBinarySensorEntityDescription, ...] = (
     ViCareBinarySensorEntityDescription(
