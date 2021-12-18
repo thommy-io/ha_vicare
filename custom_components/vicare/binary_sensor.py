@@ -25,6 +25,7 @@ from .const import DOMAIN, VICARE_API, VICARE_CIRCUITS, VICARE_DEVICE_CONFIG
 _LOGGER = logging.getLogger(__name__)
 
 SENSOR_CIRCULATION_PUMP_ACTIVE = "circulationpump_active"
+SENSOR_SOLAR_PUMP_ACTIVE = "solar_pump_active"
 SENSOR_BURNER_ACTIVE = "burner_active"
 SENSOR_COMPRESSOR_ACTIVE = "compressor_active"
 SENSOR_FROST_PROTECTION_ACTIVE = "frost_protection_active"
@@ -56,6 +57,12 @@ GLOBAL_SENSORS: tuple[ViCareBinarySensorEntityDescription, ...] = (
         name="DHW Pump Active",
         device_class=DEVICE_CLASS_POWER,
         value_getter=lambda api: api.getDomesticHotWaterPumpActive(),
+    ),
+    ViCareBinarySensorEntityDescription(
+        key=SENSOR_SOLAR_PUMP_ACTIVE,
+        name="Solar pump active",
+        device_class=DEVICE_CLASS_POWER,
+        value_getter=lambda api: api.getSolarPumpActive(),
     ),
 )
 
