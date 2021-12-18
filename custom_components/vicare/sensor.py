@@ -113,6 +113,10 @@ SENSOR_SOLAR_POWER_PRODUCTION_TODAY = "solar_power_production_today"
 SENSOR_SOLAR_POWER_PRODUCTION_THIS_WEEK = "solar_power_production_this_week"
 SENSOR_SOLAR_POWER_PRODUCTION_THIS_MONTH = "solar_power_production_this_month"
 SENSOR_SOLAR_POWER_PRODUCTION_THIS_YEAR = "solar_power_production_this_year"
+SENSOR_SOLAR_POWER_PRODUCTION_DAILY = "solar_power_production_daily"
+SENSOR_SOLAR_POWER_PRODUCTION_WEEKLY = "solar_power_production_weekly"
+SENSOR_SOLAR_POWER_PRODUCTION_MONTHLY = "solar_power_production_monthly"
+SENSOR_SOLAR_POWER_PRODUCTION_YEARLY = "solar_power_production_yearly"
 
 
 @dataclass
@@ -517,6 +521,38 @@ GLOBAL_SENSORS: tuple[ViCareSensorEntityDescription, ...] = (
         name="Solar power production this year",
         native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
         value_getter=lambda api: api.getSolarPowerProductionThisYear(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_SOLAR_POWER_PRODUCTION_DAILY,
+        name="Solar power production daily",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getSolarPowerProductionDays(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_SOLAR_POWER_PRODUCTION_WEEKLY,
+        name="Solar power production weekly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getSolarPowerProductionWeeks(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_SOLAR_POWER_PRODUCTION_MONTHLY,
+        name="Solar power production monthly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getSolarPowerProductionMonths(),
+        device_class=DEVICE_CLASS_ENERGY,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
+    ),
+    ViCareSensorEntityDescription(
+        key=SENSOR_SOLAR_POWER_PRODUCTION_YEARLY,
+        name="Solar power production yearly",
+        native_unit_of_measurement=ENERGY_KILO_WATT_HOUR,
+        value_getter=lambda api: api.getSolarPowerProductionYears(),
         device_class=DEVICE_CLASS_ENERGY,
         state_class=STATE_CLASS_TOTAL_INCREASING,
     ),
